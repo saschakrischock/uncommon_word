@@ -1,11 +1,29 @@
 const socket = io()
 
+
+// toggle
+document.getElementById('toggle').addEventListener('click', () => {
+    socket.emit('toggle');
+  });
+
+
 // Elements
 const $messageForm = document.querySelector('#message-form')
 const $messageFormInput = $messageForm.querySelector('input')
 const $messageFormButton = $messageForm.querySelector('button')
 const $sendLocationButton = document.querySelector('#send-location')
 const $messages = document.querySelector('#messages')
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const user = urlParams.get('username');
+if (user.length > 6) {
+    document.querySelector('.indicator').innerHTML = "<-";
+}
+else {
+    document.querySelector('.indicator').innerHTML = "->";
+
+}
 
 // Templates
 const messageTemplate = document.querySelector('#message-template').innerHTML
@@ -28,6 +46,10 @@ const autoscroll = () => {
 
  
 }
+
+socket.on('toggleBackground', () => {
+    document.body.classList.toggle('read');
+  });
 
 socket.on('message', (message) => {
     console.log(message)
