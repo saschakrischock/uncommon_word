@@ -88,7 +88,7 @@ button:disabled {
 
 
 
-.read .admin {
+.read .admin, .read .Admin {
     display: none !important;
 }
 
