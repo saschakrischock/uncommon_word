@@ -1,7 +1,20 @@
-const generateMessage = (username, text) => {
+const generateMessage = (username, text, color, position) => {
     return {
         username,
         text,
+        color,
+        position,
+        createdAt: new Date().getTime()
+    }
+}
+
+
+const generateStyle = (username, text, color, position) => {
+    return {
+        username,
+        text,
+        color,
+        position,
         createdAt: new Date().getTime()
     }
 }
@@ -16,5 +29,6 @@ const generateLocationMessage = (username, url) => {
 
 module.exports = {
     generateMessage,
-    generateLocationMessage
+    generateLocationMessage,
+    generateStyle
 }

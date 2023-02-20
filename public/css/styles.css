@@ -20,6 +20,22 @@ html {
     font-size: 16px;
 }
 
+.cursor {
+    position: fixed;
+    margin-left: -2.25rem;
+    margin-top: -2.25rem;
+    width: 4.5rem;
+    pointer-events: none;
+    height: 4.5rem;
+    border-radius: 50%;
+    background-color: red;
+    z-index: 9999;
+  }
+
+  .cursor-me {
+    background-color: inherit !important;
+  }
+
 input {
     font-size: 2rem;
     border-radius: 3rem;
@@ -39,6 +55,7 @@ body {
     font-size: 2rem;
     background-color: #ffcbaf;
     font-family: 'UncommonS';
+    cursor: none;
 }
 
 h1 {
@@ -75,15 +92,98 @@ button:disabled {
 
 /* Join Page Styles */
 
-#toggle {
-    position: absolute;
-    cursor: pointer;
-    top: 1.5rem;
+
+#body.compose-body .message {
+    border-radius: 3rem;
+    background-color: red !important;
+    width: fit-content;
+    margin-bottom: 1rem;
+}
+
+.compose-body #messages {
+    margin-top: 6rem;
+}
+
+
+.btn-invite {
     font-size: 1.5rem;
-    left: 1.5rem;
     background-color: #fff;
     border-radius: 3rem;
-    padding: 1.3rem 1rem 1rem 1rem;
+    position: absolute;
+    top: 0.75rem;
+    width: fit-content;
+    left: 0.75rem;
+    cursor: pointer;
+    padding: 1.3rem 2rem 1rem 2rem;
+}
+
+.btn-question {
+    font-size: 1.5rem;
+    background-color: #fff;
+    border-radius: 3rem;
+    position: absolute;
+    top: 0.75rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    font-size: 2rem;
+    text-align: center;
+    right: 0.75rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn-sessions {
+    font-size: 1.5rem;
+    background-color: #fff;
+    border-radius: 3rem;
+    position: absolute;
+    bottom: 0.75rem;
+    font-size: 1.5rem;
+    text-align: center;
+    right: 0.75rem;
+    padding: 1.3rem 2rem 1rem 2rem;
+    cursor: pointer;
+}
+
+.btn-case {
+    font-size: 1.5rem;
+    background-color: #fff;
+    border-radius: 3rem;
+    position: absolute;
+    top: 0.75rem;
+    width: fit-content;
+    right: 10.75rem;
+    cursor: pointer;
+    padding: 1.3rem 2rem 1rem 2rem;
+}
+
+.btn-case.active, .btn-case:hover {
+    background-color: red;
+    color: #fff;
+}
+
+.btn-compose {
+    font-size: 1.5rem;
+    background-color: #fff;
+    border-radius: 3rem;
+    position: absolute;
+    top: 0.75rem;
+    width: fit-content;
+    left: 10.75rem;
+    cursor: pointer;
+    padding: 1.3rem 2rem 1rem 2rem;
+}
+
+.btn-compose.active {
+    background-color: red;
+    color: #fff;
+}
+
+.btn-compose:hover, 
+.btn-invite:hover {
+    background-color: red;
+    color: #fff;
 }
 
 
@@ -92,14 +192,86 @@ button:disabled {
     display: none !important;
 }
 
+#messages .message {
+    background-color: transparent !important;
+}
+
+
+.uppercase #messages {
+    text-transform: uppercase;
+}
+
+#message-form {
+    padding: 0.75rem;
+    position: absolute;
+    bottom: 0;
+}
+
+#message-form button {
+    background-color: red;
+    color: black;
+    cursor: pointer;
+    margin-left: -0.5rem;
+}
+
 .read .chat__messages {
-    margin: 1.5rem;
-    border-radius: 1rem;
+    margin: 5.9rem 0.75rem 8rem;
+    padding: 0;
+    width: 98.5vw;
+    border-radius: 3rem;
     background-color: #fff;
+}
+
+.color-indicator {
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    top: 0.75rem;
+    margin-left: 0;
+    right: 5.75rem;
+    border-radius: 100%;
 }
 
 .read .message__name, .read .message__meta {
     display: none;
+}
+
+.message {
+    position: relative;
+}
+
+.anchor {
+    position: relative;
+}
+
+.anchor_indicator {
+    content: '';
+    position: relative;
+    right: 1px;
+    margin: 0;
+    top: 16px;
+    float: left;
+    width: 5px;
+    height: 100px;
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+  @keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+
+
+
+.read .meta {
+    display: none ;
 }
 
 .read .message {
@@ -109,6 +281,10 @@ button:disabled {
     padding: 0 0.95rem 0 0;
     float: left;
     display: inline-block;
+}  
+
+.read .message p {
+    padding: 1rem 0.5rem;
 }
 
 .centered-form {
@@ -140,6 +316,11 @@ button:disabled {
     display: flex;
 }
 
+#sidebar {
+    position: fixed;
+}
+
+
 .chat__sidebar {
     height: 100vh;
     width: 320px;
@@ -156,19 +337,68 @@ button:disabled {
 }
 
 .chat__messages {
-    flex-grow: 1;
-    width: 80vw;
-    padding: 24px 24px 0 24px;
+  /*  flex-grow: 1;*/
+    width: 97vw;
+    padding: 1rem;
     overflow-y: scroll;
 }
 
 /* Message Styles */
 
+.slider-container {
+    position: fixed;
+    right: 23.5rem;
+    top: 1.5rem;
+}
+
+/*Chrome*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='range'] {
+    /*  overflow: hidden;*/
+      width: 20rem;
+      padding: 0.1rem;
+      -webkit-appearance: none;
+      background-color: red;
+    }
+    
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      -webkit-appearance: none;
+      color: #13bba4;
+      margin-top: -1px;
+    }
+    
+    input[type='range']::-webkit-slider-thumb {
+      width: 3rem;
+      margin-top: -1.2rem;
+      -webkit-appearance: none;
+      height: 3rem;
+      margin-left: 0.2rem;
+      border-radius: 100%;
+      cursor: ew-resize;
+      background: red;
+    }
+
+}
+/** FF*/
+input[type="range"]::-moz-range-progress {
+  background-color: #43e5f7; 
+}
+input[type="range"]::-moz-range-track {  
+  background-color: #9a905d;
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+  background-color: #43e5f7; 
+}
+input[type="range"]::-ms-fill-upper {  
+  background-color: #9a905d;
+}
+
 .message {
     background-color: red;
     border-radius: 3rem;
     padding: 1.5rem;
-    font-size: 2rem;
     margin-bottom: 0;   
 }
 
@@ -176,6 +406,8 @@ button:disabled {
     position: absolute;
     bottom: 2.5rem;
     font-size: 5rem;
+    pointer-events: none;
+    opacity: 0;
     left: 2rem;
 }
 
@@ -184,6 +416,20 @@ button:disabled {
     font-size: 1.5rem;
     color: #fff;
     margin-right: 8px;
+}
+
+.usercount {
+    position: fixed;
+    background-color: #fff;
+    border-radius: 3rem;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1.3rem 2rem 1rem 2rem;
+}
+
+.usercount span {
+    color: red;
 }
 
 .message__meta {
@@ -197,9 +443,17 @@ button:disabled {
 
 /* Message Composition Styles */
 
+#colorPicker {
+    display: none;
+}
+
 .compose {
     display: flex;
     flex-shrink: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
     margin-top: 16px;
     padding: 24px;
 }

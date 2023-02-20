@@ -6,16 +6,50 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
-<body>
+<body id="body" class="read">
+    <div id="cursors"></div>
+    <div id="users"></div>
+    <div id="user-list"></div>
+    <div class="color-indicator"></div>
+    <input type="color" id="colorPicker">
     <div class="chat">
+
         <div id="sidebar" class="chat__sidebar">
         </div>
         <div class="chat__main">
-            <div id="messages" class="chat__messages"></div>
+            <div id="messages" class="chat__messages" style="font-size:5rem">
+                <div class="anchor anchor_1">
 
-            <div class="compose">
+                </div>
+                <div class="anchor_1_indicator anchor_indicator"></div>
+                <div class="anchor anchor_2">
+                    
+                </div>
+                <div class="anchor_2_indicator anchor_indicator"></div>
+                <div class="anchor  anchor_3">
+                    
+                </div>
+                <div class="anchor_3_indicator anchor_indicator"></div>
+                <div class="anchor  anchor_4">
+                    
+                </div>
+                <div class="anchor_4_indicator anchor_indicator"></div>
+                <div class="anchor  anchor_5">
+                    </div>
+                    <div class="anchor_5_indicator anchor_indicator"></div>
+            </div>
+        
+            <div class="Invite btn-invite">
+                Invite
+            </div>
+
+            <div class="slider-container">
+                <input type="range" min="1" max="10" value="5" class="slider">
+              </div>
+
+            <div class="Compose">
                 <form id="message-form">
-                    <input name="message" placeholder="Word" maxlength="8" required autocomplete="off">
+                    <input name="message" placeholder="Text..." maxlength="190" required autocomplete="off">
                     <button>Send</button>
                 </form>
                 <button id="send-location">Send location</button>
@@ -23,12 +57,22 @@
         </div>
         <div class="indicator"></div>
 
-        <div id="toggle">read mode</div>
+
+        <div class="btn-compose" id="toggle">Compose</div>
+
+        <div class="btn-case" id="case">Uppercase</div>
+
+        <div class="btn-question">?</div>
+
+        <div class="btn-sessions">Sessions</div>
     </div>
 
+
     <script id="message-template" type="text/html">
-            <div  class="message  {{username}}">
-                <p >
+
+            
+            <div style="color: {{color}}"  class="message  {{username}}">
+                <p class="meta">
                     <span class="message__name">{{username}}</span>
                     <span class="message__meta">{{createdAt}}</span>
                 </p>
@@ -47,12 +91,15 @@
         </script>
 
     <script id="sidebar-template" type="text/html">
-        <h2 class="room-title">{{room}}</h2>
-        <h3 class="list-title">Users</h3>
         <ul class="users">
             {{#users}}
-                <li>{{username}}</li>
+             
             {{/users}}
+
+            <div class="usercount">
+            <span>{{users.length}}</span> active peers
+        </div>
+
         </ul>
     </script>
 

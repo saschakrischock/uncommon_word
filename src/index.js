@@ -1,10 +1,12 @@
+//serverside
+
 const path = require('path')
 const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
 const Filter = require('bad-words')
 const { generateMessage, generateLocationMessage } = require('./utils/messages')
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
+const { addUser, removeUser, getUser, getColor, getUsersInRoom, colors } = require('./utils/users')
 
 const app = express()
 const server = http.createServer(app)
@@ -16,16 +18,28 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 
 
 
+// Object to keep track of user colors
+
+
 
 app.use(express.static(publicDirectoryPath))
+
+
+const col = ['red', 'green', 'blue'];
+// Initialize an empty object to store user colors
+const userColors = {};
 
 io.on('connection', (socket) => {
 
 
 
-    socket.on('toggle', () => {
-        io.emit('toggleBackground');
+    socket.on('mousemove', (data) => {
+        io.emit('cursor', { id: socket.id, x: data.x, y: data.y });
       });
+
+
+    console.log(`User ${socket.id} connected`);
+  
 
 
     console.log('New WebSocket connection');
@@ -37,7 +51,18 @@ io.on('connection', (socket) => {
             return callback(error)
         }
 
+        
+       // const id = getUser(socket.id)
+        console.log('color ' + user.userColor);
+        console.log('name ' + user.username);
+        console.log('position ' + user.userPosition);
+
         socket.join(user.room)
+
+
+        socket.emit('color', {getcolor: user.userColor, getuser: user.username, getposition: user.userPosition});
+
+
 
         socket.emit('message', generateMessage('Uncommon admin', 'Welcome!'))
         socket.broadcast.to(user.room).emit('message', generateMessage('Uncommon Admin', `${user.username} has joined!`))
@@ -46,8 +71,10 @@ io.on('connection', (socket) => {
             users: getUsersInRoom(user.room)
         })
 
+
         callback()
     })
+
 
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id)
@@ -57,7 +84,7 @@ io.on('connection', (socket) => {
             return callback('Profanity is not allowed!')
         }
 
-        io.to(user.room).emit('message', generateMessage(user.username, message))
+        io.to(user.room).emit('message', generateMessage(user.username, message, user.userColor, user.userPosition))
         callback()
     })
 
@@ -66,6 +93,7 @@ io.on('connection', (socket) => {
         io.to(user.room).emit('locationMessage', generateLocationMessage(user.username, `https://google.com/maps?q=${coords.latitude},${coords.longitude}`))
         callback()
     })
+
 
     socket.on('disconnect', () => {
         const user = removeUser(socket.id)
