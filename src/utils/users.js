@@ -21,7 +21,7 @@ const addUser = ({ id, username, room }) => {
         }
     }
 
-    colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#800080', '#008000'];
+    colors = ['#8800ff', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#800080', '#008000'];
 userColorIndex = Math.floor(Math.random() * 8);
 userColor = colors[userColorIndex];
 

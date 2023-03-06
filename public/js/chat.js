@@ -10,7 +10,7 @@ const usersDiv = document.getElementById('users');
 
 
 
-colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#800080', '#008000'];
+colors = ['#8800ff', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#800080', '#008000'];
 userColorIndex = Math.floor(Math.random() * 8);
 userColor = colors[userColorIndex];
 
@@ -124,9 +124,13 @@ socket.on('user connected', (id) => {
       // COMPOSE sort buttons
       const container = document.getElementById("messages_compose");
       const sortButtonalphabet = document.getElementById("sort-button-alphabet");
+      const sortButtonalphabetReverse = document.getElementById("sort-button-alphabet-reverse");
       const sortButtonauthor = document.getElementById("sort-button-author");
+      const sortButtonauthorReverse = document.getElementById("sort-button-author-reverse");
       const sortButtonlength = document.getElementById("sort-button-length");
       const sortButtonlengthReverse = document.getElementById("sort-button-length-reverse");
+      const sortButtonTime = document.getElementById("sort-button-time");
+      const sortButtonTimeReverse = document.getElementById("sort-button-time-reverse");
 
       // sort alphabet A-Z words
 
@@ -137,6 +141,21 @@ sortButtonalphabet.addEventListener("click", () => {
     const firstWordA = a.querySelector(".message__inner").textContent.split(" ")[0];
     const firstWordB = b.querySelector(".message__inner").textContent.split(" ")[0];
     return firstWordA.localeCompare(firstWordB);
+  });
+
+  sortedDivs.forEach((div) => {
+    container.appendChild(div);
+  });
+});
+
+
+sortButtonalphabetReverse.addEventListener("click", () => {
+  const divs = container.querySelectorAll(".message");
+
+  const sortedDivs = [...divs].sort((a, b) => {
+    const firstWordA = a.querySelector(".message__inner").textContent.split(" ")[0];
+    const firstWordB = b.querySelector(".message__inner").textContent.split(" ")[0];
+    return firstWordB.localeCompare(firstWordA);
   });
 
   sortedDivs.forEach((div) => {
@@ -158,6 +177,51 @@ sortButtonauthor.addEventListener("click", () => {
     container.appendChild(div);
   });
 });
+
+sortButtonauthorReverse.addEventListener("click", () => {
+  const divs = container.querySelectorAll(".message");
+
+  const sortedDivs = [...divs].sort((a, b) => {
+    const firstWordA = a.querySelector(".message__name").textContent.split(" ")[0];
+    const firstWordB = b.querySelector(".message__name").textContent.split(" ")[0];
+    return firstWordB.localeCompare(firstWordA);
+  });
+
+  sortedDivs.forEach((div) => {
+    container.appendChild(div);
+  });
+});
+
+
+sortButtonTime.addEventListener("click", () => {
+  const divs = container.querySelectorAll(".message");
+
+  const sortedDivs = [...divs].sort((a, b) => {
+    const firstWordA = a.querySelector(".message__meta").textContent.split(" ")[0];
+    const firstWordB = b.querySelector(".message__meta").textContent.split(" ")[0];
+    return firstWordA.localeCompare(firstWordB);
+  });
+
+  sortedDivs.forEach((div) => {
+    container.appendChild(div);
+  });
+});
+
+sortButtonTimeReverse.addEventListener("click", () => {
+  const divs = container.querySelectorAll(".message");
+
+  const sortedDivs = [...divs].sort((a, b) => {
+    const firstWordA = a.querySelector(".message__meta").textContent.split(" ")[0];
+    const firstWordB = b.querySelector(".message__meta").textContent.split(" ")[0];
+    return firstWordB.localeCompare(firstWordA);
+  });
+
+  sortedDivs.forEach((div) => {
+    container.appendChild(div);
+  });
+});
+
+
 
 
 

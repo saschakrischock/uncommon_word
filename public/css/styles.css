@@ -104,6 +104,12 @@ button:disabled {
 
 .compose-body #messages {
     margin-top: 6rem;
+    margin-bottom: 6rem;
+}
+
+.compose-body .chat__messages {
+    padding-bottom: 6rem;
+    width: calc(100vw - 0rem);
 }
 
 
@@ -216,6 +222,8 @@ button:disabled {
 
 .sort-group {
     z-index: 100;
+    width: calc(100vw - 1rem);
+    position: relative;
     display: flex;
     margin-top: 5rem;
     margin-bottom: 1rem;
