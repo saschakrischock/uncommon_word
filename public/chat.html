@@ -17,7 +17,8 @@
         <div id="sidebar" class="chat__sidebar">
         </div>
         <div class="chat__main">
-            <div id="messages" class="chat__messages" style="font-size:5rem">
+
+            <div id="messages" class="chat__messages size-2rem" style="font-size:2rem">
                 <div class="anchor anchor_1">
 
                 </div>
@@ -38,13 +39,43 @@
                     </div>
                     <div class="anchor_5_indicator anchor_indicator"></div>
             </div>
+
+            <div id="messages_compose" class="chat__messages" style="font-size:2rem">
+
+
+                <div class="sort-group">
+            <button id="sort-button-alphabet">Sort Alphabetically</button>
+            <button id="sort-button-author">Sort by Author</button>
+            <button id="sort-button-length">Sort by Length (A-Z)</button>
+            <button id="sort-button-length-reverse">Sort by Length (Z-A)</button>
+        </div>
+               <!--<div class="anchor anchor_1">
+
+                </div>
+                <div class="anchor_1_indicator anchor_indicator"></div>
+                <div class="anchor anchor_2">
+                    
+                </div>
+                <div class="anchor_2_indicator anchor_indicator"></div>
+                <div class="anchor  anchor_3">
+                    
+                </div>
+                <div class="anchor_3_indicator anchor_indicator"></div>
+                <div class="anchor  anchor_4">
+                    
+                </div>
+                <div class="anchor_4_indicator anchor_indicator"></div>
+                <div class="anchor  anchor_5">
+                    </div>
+                    <div class="anchor_5_indicator anchor_indicator"></div>--> 
+            </div>
         
             <div class="Invite btn-invite">
                 Invite
             </div>
 
             <div class="slider-container">
-                <input type="range" min="1" max="10" value="5" class="slider">
+                <input type="range" min="1" max="10" value="2" class="slider">
               </div>
 
             <div class="Compose">
@@ -76,9 +107,11 @@
                     <span class="message__name">{{username}}</span>
                     <span class="message__meta">{{createdAt}}</span>
                 </p>
-                <p>{{message}}</p>
+                <p class="message__inner">{{message}}</p>
             </div>
         </script>
+
+        
 
     <script id="location-message-template" type="text/html">
             <div class="message">

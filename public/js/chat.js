@@ -8,6 +8,8 @@ const usersDiv = document.getElementById('users');
 // toggle
 
 
+
+
 colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#800080', '#008000'];
 userColorIndex = Math.floor(Math.random() * 8);
 userColor = colors[userColorIndex];
@@ -19,6 +21,7 @@ const $messageFormInput = $messageForm.querySelector('input')
 const $messageFormButton = $messageForm.querySelector('button')
 const $sendLocationButton = document.querySelector('#send-location')
 const $messages = document.querySelector('#messages')
+const $messages_compose = document.querySelector('#messages_compose')
 
 
 
@@ -95,13 +98,103 @@ socket.on('user connected', (id) => {
     });*/
 
 
+
+    document.getElementById('toggle').addEventListener('click', () => {
+      socket.emit('toggle');
+    });
+
+
+    socket.on('toggleBackground', () => {
+      document.body.classList.toggle('read');
+      document.body.classList.toggle('compose-body');
+      document.querySelector('#toggle').classList.toggle('active');
+    });
+
+
           // compose toggle button
+          /*
     document.getElementById('toggle').addEventListener('click', () => {
     document.body.classList.toggle('read');
     document.body.classList.toggle('compose-body');
     document.querySelector('#toggle').classList.toggle('active');
-      });
+      });*/
 
+
+
+      // COMPOSE sort buttons
+      const container = document.getElementById("messages_compose");
+      const sortButtonalphabet = document.getElementById("sort-button-alphabet");
+      const sortButtonauthor = document.getElementById("sort-button-author");
+      const sortButtonlength = document.getElementById("sort-button-length");
+      const sortButtonlengthReverse = document.getElementById("sort-button-length-reverse");
+
+      // sort alphabet A-Z words
+
+sortButtonalphabet.addEventListener("click", () => {
+  const divs = container.querySelectorAll(".message");
+
+  const sortedDivs = [...divs].sort((a, b) => {
+    const firstWordA = a.querySelector(".message__inner").textContent.split(" ")[0];
+    const firstWordB = b.querySelector(".message__inner").textContent.split(" ")[0];
+    return firstWordA.localeCompare(firstWordB);
+  });
+
+  sortedDivs.forEach((div) => {
+    container.appendChild(div);
+  });
+});
+
+
+sortButtonauthor.addEventListener("click", () => {
+  const divs = container.querySelectorAll(".message");
+
+  const sortedDivs = [...divs].sort((a, b) => {
+    const firstWordA = a.querySelector(".message__name").textContent.split(" ")[0];
+    const firstWordB = b.querySelector(".message__name").textContent.split(" ")[0];
+    return firstWordA.localeCompare(firstWordB);
+  });
+
+  sortedDivs.forEach((div) => {
+    container.appendChild(div);
+  });
+});
+
+
+
+      // sort alphabet A-Z words
+
+
+sortButtonlength.addEventListener("click", () => {
+  const divs = container.querySelectorAll(".message");
+
+  const sortedDivs = [...divs].sort((a, b) => {
+    const textLengthA = a.querySelector(".message__inner").textContent.length;
+    const textLengthB = b.querySelector(".message__inner").textContent.length;
+    return textLengthA - textLengthB;
+  });
+
+  sortedDivs.forEach((div) => {
+    container.appendChild(div);
+  });
+});
+
+      // sort alphabet Z-A words
+
+
+      sortButtonlengthReverse.addEventListener("click", () => {
+        const divs = container.querySelectorAll(".message");
+      
+        const sortedDivs = [...divs].sort((a, b) => {
+          const textLengthA = a.querySelector(".message__inner").textContent.length;
+          const textLengthB = b.querySelector(".message__inner").textContent.length;
+          return textLengthB - textLengthA;
+        });
+      
+        sortedDivs.forEach((div) => {
+          container.appendChild(div);
+        });
+      });
+      
 
 
       // uppercase toggle button
@@ -119,6 +212,8 @@ socket.on('user connected', (id) => {
           slider.addEventListener('input', () => {
             const fontSize = `${slider.value}rem`;
             text.style.fontSize = fontSize;
+            text.classList.remove('size-1rem','size-2rem', 'size-3rem', 'size-4rem', 'size-5rem', 'size-6rem', 'size-7rem', 'size-8rem', 'size-9rem', 'size-10rem', )
+            text.classList.add('size-' + fontSize );
           });
 
 
@@ -152,9 +247,7 @@ socket.on('cursor', (data) => {
 
   
 
-socket.on('toggleBackground', () => {
-    document.body.classList.toggle('read');
-  });
+
 
 socket.on('message', (message) => {
     console.log(message)
@@ -169,22 +262,27 @@ socket.on('message', (message) => {
     if (message.position == 'anchor_1') {
      //   document.querySelector('.anchor_1 .message:last-child');
         document.querySelector('.anchor_1').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages_compose').insertAdjacentHTML('beforeend', html)
     }
     else if (message.position == 'anchor_2') {
       //  document.querySelector('.anchor_2').style.color= message.color;
         document.querySelector('.anchor_2').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages_compose').insertAdjacentHTML('beforeend', html)
     }
     else if (message.position == 'anchor_3') {
      //   document.querySelector('.anchor_3').style.color= message.color;
         document.querySelector('.anchor_3').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages_compose').insertAdjacentHTML('beforeend', html)
     }
     else if (message.position == 'anchor_4') {
       //  document.querySelector('.anchor_4').style.color= message.color;
         document.querySelector('.anchor_4').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages_compose').insertAdjacentHTML('beforeend', html)
     }
     else {
      //   document.querySelector('.anchor_5').style.color= message.color;
         document.querySelector('.anchor_5').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages_compose').insertAdjacentHTML('beforeend', html)
     }
     autoscroll()
 })
@@ -209,6 +307,7 @@ socket.on('locationMessage', (message) => {
         createdAt: moment(message.createdAt).format('h:mm a')
     })
     $messages.insertAdjacentHTML('beforeend', html)
+    $messages_compose.insertAdjacentHTML('beforeend', html)
     autoscroll()
 })
 

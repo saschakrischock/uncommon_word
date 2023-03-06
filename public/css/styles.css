@@ -74,10 +74,11 @@ input {
 }
 
 button {
-    font-size: 2rem;
+    font-size: 1rem;
     border: none;
     border-radius: 3rem;
     padding: 1.5rem;
+    margin-right: 1rem;
     font-family: 'UncommonS';
 }
 
@@ -95,6 +96,7 @@ button:disabled {
 
 #body.compose-body .message {
     border-radius: 3rem;
+    font-size: 1.5rem !important;
     background-color: red !important;
     width: fit-content;
     margin-bottom: 1rem;
@@ -192,9 +194,36 @@ button:disabled {
     display: none !important;
 }
 
+#messages_compose .admin, #messages_compose .Admin {
+    display: none;
+}
+
+.read #messages_compose {
+    display: none;
+}
+
+.read #messages {
+    display: block;
+}
+
+#messages {
+    display: none;
+}
+
 #messages .message {
     background-color: transparent !important;
 }
+
+.sort-group {
+    z-index: 100;
+    display: flex;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+}
+
+::-webkit-scrollbar {
+    display: none !important;
+  }
 
 
 .uppercase #messages {
@@ -205,9 +234,16 @@ button:disabled {
     padding: 0.75rem;
     position: absolute;
     bottom: 0;
+    font-size: 1.5rem;
+}
+
+#message-form input {
+    font-size: 1.5rem;
 }
 
 #message-form button {
+    opacity: 0;
+    pointer-events: none;
     background-color: red;
     color: black;
     cursor: pointer;
@@ -244,6 +280,54 @@ button:disabled {
     position: relative;
 }
 
+.size-1rem   .anchor_indicator {
+    top: 13px;
+    width: 2px;
+    height: 25px;
+  }
+
+.size-2rem   .anchor_indicator {
+    height: 47px;
+}
+
+.size-3rem   .anchor_indicator {
+    height: 70px;
+}
+.size-4rem   .anchor_indicator {
+    height: 90px;
+}
+
+.size-5rem   .anchor_indicator {
+    height: 110px;
+}
+
+.size-6rem   .anchor_indicator {
+    height: 130px;
+}
+
+.size-7rem   .anchor_indicator {
+    height: 150px;
+}
+
+
+.size-8rem   .anchor_indicator {
+    height: 170px;
+    width: 6px;
+}
+
+
+.size-9rem   .anchor_indicator {
+    height: 190px;
+    width: 7px;
+}
+
+.size-10rem   .anchor_indicator {
+    height: 210px;
+    width: 8px;
+}
+
+
+
 .anchor_indicator {
     content: '';
     position: relative;
@@ -251,8 +335,7 @@ button:disabled {
     margin: 0;
     top: 16px;
     float: left;
-    width: 5px;
-    height: 100px;
+    width: 3px;
     animation: blink-animation 1s steps(5, start) infinite;
     -webkit-animation: blink-animation 1s steps(5, start) infinite;
 }
@@ -373,7 +456,7 @@ button:disabled {
       margin-top: -1.2rem;
       -webkit-appearance: none;
       height: 3rem;
-      margin-left: 0.2rem;
+      margin-left: 0;
       border-radius: 100%;
       cursor: ew-resize;
       background: red;

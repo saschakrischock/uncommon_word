@@ -33,10 +33,13 @@ io.on('connection', (socket) => {
 
 
 
-    socket.on('mousemove', (data) => {
-        io.emit('cursor', { id: socket.id, x: data.x, y: data.y });
-      });
+      socket.on('toggle', () => {
+    io.emit('toggleBackground');
+  });
 
+
+
+   
 
     console.log(`User ${socket.id} connected`);
   
@@ -58,6 +61,12 @@ io.on('connection', (socket) => {
         console.log('position ' + user.userPosition);
 
         socket.join(user.room)
+
+        socket.on('mousemove', (data) => {
+            console.log('room' + user.room);
+            io.to(user.room).emit('cursor', { id: socket.id, x: data.x, y: data.y });
+          });
+    
 
 
         socket.emit('color', {getcolor: user.userColor, getuser: user.username, getposition: user.userPosition});
@@ -84,6 +93,7 @@ io.on('connection', (socket) => {
             return callback('Profanity is not allowed!')
         }
 
+        
         io.to(user.room).emit('message', generateMessage(user.username, message, user.userColor, user.userPosition))
         callback()
     })
