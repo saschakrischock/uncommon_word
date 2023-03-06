@@ -229,6 +229,11 @@ button:disabled {
     margin-bottom: 1rem;
 }
 
+.sort-group .active {
+    background-color: red;
+    color: #fff;
+}
+
 ::-webkit-scrollbar {
     display: none !important;
   }

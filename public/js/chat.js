@@ -134,7 +134,16 @@ socket.on('user connected', (id) => {
 
       // sort alphabet A-Z words
 
+
+
+  
+
 sortButtonalphabet.addEventListener("click", () => {
+
+  for (const button of document.querySelectorAll('.sort-group button')) {
+    button.classList.remove('active');
+  }
+  sortButtonalphabet.classList.add('active');
   const divs = container.querySelectorAll(".message");
 
   const sortedDivs = [...divs].sort((a, b) => {
@@ -150,6 +159,11 @@ sortButtonalphabet.addEventListener("click", () => {
 
 
 sortButtonalphabetReverse.addEventListener("click", () => {
+
+  for (const button of document.querySelectorAll('.sort-group button')) {
+    button.classList.remove('active');
+  }
+  sortButtonalphabetReverse.classList.add('active');
   const divs = container.querySelectorAll(".message");
 
   const sortedDivs = [...divs].sort((a, b) => {
@@ -165,6 +179,11 @@ sortButtonalphabetReverse.addEventListener("click", () => {
 
 
 sortButtonauthor.addEventListener("click", () => {
+
+  for (const button of document.querySelectorAll('.sort-group button')) {
+    button.classList.remove('active');
+  }
+  sortButtonauthor.classList.add('active');
   const divs = container.querySelectorAll(".message");
 
   const sortedDivs = [...divs].sort((a, b) => {
@@ -179,6 +198,11 @@ sortButtonauthor.addEventListener("click", () => {
 });
 
 sortButtonauthorReverse.addEventListener("click", () => {
+
+  for (const button of document.querySelectorAll('.sort-group button')) {
+    button.classList.remove('active');
+  }
+  sortButtonauthorReverse.classList.add('active');
   const divs = container.querySelectorAll(".message");
 
   const sortedDivs = [...divs].sort((a, b) => {
@@ -194,6 +218,11 @@ sortButtonauthorReverse.addEventListener("click", () => {
 
 
 sortButtonTime.addEventListener("click", () => {
+
+  for (const button of document.querySelectorAll('.sort-group button')) {
+    button.classList.remove('active');
+  }
+  sortButtonTime.classList.add('active');
   const divs = container.querySelectorAll(".message");
 
   const sortedDivs = [...divs].sort((a, b) => {
@@ -208,6 +237,11 @@ sortButtonTime.addEventListener("click", () => {
 });
 
 sortButtonTimeReverse.addEventListener("click", () => {
+
+  for (const button of document.querySelectorAll('.sort-group button')) {
+    button.classList.remove('active');
+  }
+  sortButtonTimeReverse.classList.add('active');
   const divs = container.querySelectorAll(".message");
 
   const sortedDivs = [...divs].sort((a, b) => {
@@ -229,6 +263,11 @@ sortButtonTimeReverse.addEventListener("click", () => {
 
 
 sortButtonlength.addEventListener("click", () => {
+
+  for (const button of document.querySelectorAll('.sort-group button')) {
+    button.classList.remove('active');
+  }
+  sortButtonlength.classList.add('active');
   const divs = container.querySelectorAll(".message");
 
   const sortedDivs = [...divs].sort((a, b) => {
@@ -246,6 +285,11 @@ sortButtonlength.addEventListener("click", () => {
 
 
       sortButtonlengthReverse.addEventListener("click", () => {
+
+        for (const button of document.querySelectorAll('.sort-group button')) {
+          button.classList.remove('active');
+        }
+        sortButtonlengthReverse.classList.add('active');
         const divs = container.querySelectorAll(".message");
       
         const sortedDivs = [...divs].sort((a, b) => {
