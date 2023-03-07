@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
         }
 
 
-        
+
         
        // const id = getUser(socket.id)
         console.log('color ' + user.userColor);
@@ -65,8 +65,8 @@ io.on('connection', (socket) => {
         socket.join(user.room)
 
         socket.on('mousemove', (data) => {
-            console.log('room' + user.room);
-            io.to(user.room).emit('cursor', { id: socket.id, x: data.x, y: data.y });
+            console.log('room' + user.username);
+            io.to(user.room).emit('cursor', { id: socket.id, x: data.x, y: data.y, color: user.username });
           });
     
 

@@ -347,7 +347,7 @@ socket.on('cursor', (data) => {
     } else {
       cursor.classList.remove('cursor-me');
     }
-  
+    cursor.style.backgroundColor = data.color;
     cursor.style.left = `${data.x}px`;
     cursor.style.top = `${data.y}px`;
   });
