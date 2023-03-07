@@ -29,7 +29,7 @@ const $messages_compose = document.querySelector('#messages_compose')
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const localroom = urlParams.get('room')
-const user = urlParams.get('username');
+const user = urlParams.get('colour');
 if (user.length > 6) {
     document.querySelector('.indicator').innerHTML = "<-";
 }
@@ -44,7 +44,7 @@ const locationMessageTemplate = document.querySelector('#location-message-templa
 const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
 
 // query string
-const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+const { colour, room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
 
 const autoscroll = () => {
     const $newMessage = $messages.lastElementChild
@@ -104,6 +104,9 @@ socket.on('user connected', (id) => {
     });
 
 
+  
+
+
     socket.on('toggleBackground', () => {
       document.body.classList.toggle('read');
       document.body.classList.toggle('compose-body');
@@ -137,8 +140,11 @@ socket.on('user connected', (id) => {
 
 
   
+      sortButtonalphabet.addEventListener('click', () => {
+        socket.emit('sortAlphabet');
+      });
 
-sortButtonalphabet.addEventListener("click", () => {
+      socket.on('clicksortAlphabet', () => {
 
   for (const button of document.querySelectorAll('.sort-group button')) {
     button.classList.remove('active');
@@ -158,7 +164,12 @@ sortButtonalphabet.addEventListener("click", () => {
 });
 
 
-sortButtonalphabetReverse.addEventListener("click", () => {
+sortButtonalphabetReverse.addEventListener('click', () => {
+
+  socket.emit('sortAlphabetReverse');
+});
+
+socket.on('clicksortAlphabetReverse', () => {
 
   for (const button of document.querySelectorAll('.sort-group button')) {
     button.classList.remove('active');
@@ -179,6 +190,10 @@ sortButtonalphabetReverse.addEventListener("click", () => {
 
 
 sortButtonauthor.addEventListener("click", () => {
+  socket.emit('sortAuthor');
+});
+
+socket.on('clicksortAuthor', () => {
 
   for (const button of document.querySelectorAll('.sort-group button')) {
     button.classList.remove('active');
@@ -198,6 +213,10 @@ sortButtonauthor.addEventListener("click", () => {
 });
 
 sortButtonauthorReverse.addEventListener("click", () => {
+  socket.emit('sortAuthorReverse');
+});
+
+socket.on('clicksortAuthorReverse', () => {
 
   for (const button of document.querySelectorAll('.sort-group button')) {
     button.classList.remove('active');
@@ -218,6 +237,11 @@ sortButtonauthorReverse.addEventListener("click", () => {
 
 
 sortButtonTime.addEventListener("click", () => {
+  socket.emit('sortTime');
+});
+
+
+socket.on('clicksortTime', () => {
 
   for (const button of document.querySelectorAll('.sort-group button')) {
     button.classList.remove('active');
@@ -236,7 +260,12 @@ sortButtonTime.addEventListener("click", () => {
   });
 });
 
+
 sortButtonTimeReverse.addEventListener("click", () => {
+  socket.emit('sortTimeReverse');
+});
+
+socket.on('clicksortTimeReverse', () => {
 
   for (const button of document.querySelectorAll('.sort-group button')) {
     button.classList.remove('active');
@@ -256,13 +285,21 @@ sortButtonTimeReverse.addEventListener("click", () => {
 });
 
 
+socket.on('gone', () => {
+alert("left");
+});
 
 
 
       // sort alphabet A-Z words
 
 
-sortButtonlength.addEventListener("click", () => {
+      sortButtonlength.addEventListener("click", () => {
+        socket.emit('sortLength');
+      });
+
+
+      socket.on('clicksortLength', () => {
 
   for (const button of document.querySelectorAll('.sort-group button')) {
     button.classList.remove('active');
@@ -285,6 +322,10 @@ sortButtonlength.addEventListener("click", () => {
 
 
       sortButtonlengthReverse.addEventListener("click", () => {
+        socket.emit('sortLengthReverse');
+      });
+
+      socket.on('clicksortLengthReverse', () => {
 
         for (const button of document.querySelectorAll('.sort-group button')) {
           button.classList.remove('active');
@@ -360,11 +401,11 @@ socket.on('cursor', (data) => {
 socket.on('message', (message) => {
     console.log(message)
     const html = Mustache.render(messageTemplate, {
-        username: message.username,
+        colour: message.colour,
         message: message.text,
         color: message.color,
         position: message.position,
-        createdAt: moment(message.createdAt).format('h:mm a')
+        createdAt: moment(message.createdAt).format('h:mm:ss a')
     })
 
     if (message.position == 'anchor_1') {
@@ -412,7 +453,7 @@ window.addEventListener("load", function() {
 socket.on('locationMessage', (message) => {
     console.log(message)
     const html = Mustache.render(locationMessageTemplate, {
-        username: message.username,
+        colour: message.colour,
         url: message.url,
        // userColor: message.userColor,
         createdAt: moment(message.createdAt).format('h:mm a')
@@ -478,7 +519,7 @@ $sendLocationButton.addEventListener('click', () => {
     })
 })
 
-socket.emit('join', { username, room }, (error) => {
+socket.emit('join', { colour, room }, (error) => {
     if (error) {
         alert(error)
         location.href = '/'

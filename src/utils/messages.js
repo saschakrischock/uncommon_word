@@ -1,6 +1,6 @@
-const generateMessage = (username, text, color, position) => {
+const generateMessage = (colour, text, color, position) => {
     return {
-        username,
+        colour,
         text,
         color,
         position,
@@ -9,9 +9,9 @@ const generateMessage = (username, text, color, position) => {
 }
 
 
-const generateStyle = (username, text, color, position) => {
+const generateStyle = (colour, text, color, position) => {
     return {
-        username,
+        colour,
         text,
         color,
         position,
@@ -19,9 +19,9 @@ const generateStyle = (username, text, color, position) => {
     }
 }
 
-const generateLocationMessage = (username, url) => {
+const generateLocationMessage = (colour, url) => {
     return {
-        username,
+        colour,
         url,
         createdAt: new Date().getTime()
     }

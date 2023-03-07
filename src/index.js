@@ -38,6 +38,46 @@ io.on('connection', (socket) => {
   });
 
 
+  socket.on('sortAlphabet', () => {
+    io.emit('clicksortAlphabet');
+  });
+
+
+
+  socket.on('sortAlphabetReverse', () => {
+    io.emit('clicksortAlphabetReverse');
+  });
+
+
+
+  socket.on('sortAuthor', () => {
+    io.emit('clicksortAuthor');
+  });
+
+
+  socket.on('sortAuthorReverse', () => {
+    io.emit('clicksortAuthorReverse');
+  });
+
+
+  socket.on('sortTime', () => {
+    io.emit('clicksortTime');
+  });
+
+  socket.on('sortTimeReverse', () => {
+    io.emit('clicksortTimeReverse');
+  });
+
+
+  socket.on('sortLength', () => {
+    io.emit('clicksortLength');
+  });
+
+  socket.on('sortLengthReverse', () => {
+    io.emit('clicksortLengthReverse');
+  });
+
+
 
    
 
@@ -59,31 +99,32 @@ io.on('connection', (socket) => {
         
        // const id = getUser(socket.id)
         console.log('color ' + user.userColor);
-        console.log('name ' + user.username);
+        console.log('name ' + user.colour);
         console.log('position ' + user.userPosition);
 
         socket.join(user.room)
 
         socket.on('mousemove', (data) => {
-            console.log('room' + user.username);
-            io.to(user.room).emit('cursor', { id: socket.id, x: data.x, y: data.y, color: user.username });
+            console.log('room' + user.colour);
+            io.to(user.room).emit('cursor', { id: socket.id, x: data.x, y: data.y, color: user.colour });
           });
     
 
 
 
 
-        socket.emit('color', {getcolor: user.userColor, getuser: user.username, getposition: user.userPosition});
+        socket.emit('color', {getcolor: user.userColor, getuser: user.colour, getposition: user.userPosition});
 
 
 
         socket.emit('message', generateMessage('Uncommon admin', 'Welcome!'))
-        socket.broadcast.to(user.room).emit('message', generateMessage('Uncommon Admin', `${user.username} has joined!`))
+        socket.broadcast.to(user.room).emit('message', generateMessage('Uncommon Admin', `${user.colour} has joined!`))
         io.to(user.room).emit('roomData', {
             room: user.room,
             users: getUsersInRoom(user.room)
         })
 
+        
 
         callback()
     })
@@ -97,23 +138,27 @@ io.on('connection', (socket) => {
             return callback('Profanity is not allowed!')
         }
 
+
         
-        io.to(user.room).emit('message', generateMessage(user.username, message, user.userColor, user.userPosition))
+        io.to(user.room).emit('message', generateMessage(user.colour, message, user.userColor, user.userPosition))
         callback()
     })
 
     socket.on('sendLocation', (coords, callback) => {
         const user = getUser(socket.id)
-        io.to(user.room).emit('locationMessage', generateLocationMessage(user.username, `https://google.com/maps?q=${coords.latitude},${coords.longitude}`))
+        io.to(user.room).emit('locationMessage', generateLocationMessage(user.colour, `https://google.com/maps?q=${coords.latitude},${coords.longitude}`))
         callback()
     })
 
 
+
+
     socket.on('disconnect', () => {
+        socket.emit('gone');
         const user = removeUser(socket.id)
 
         if (user) {
-            io.to(user.room).emit('message', generateMessage('Uncommon Admin', `${user.username} has left!`))
+            io.to(user.room).emit('message', generateMessage('Uncommon Admin', `${user.colour} has left!`))
             io.to(user.room).emit('roomData', {
                 room: user.room,
                 users: getUsersInRoom(user.room)
@@ -121,6 +166,7 @@ io.on('connection', (socket) => {
         }
     })
 })
+
 
 server.listen(port, () => {
     console.log(`Server is up on port ${port}!`)

@@ -44,14 +44,14 @@
 
 
                 <div class="sort-group">
-            <button id="sort-button-alphabet">Sort Alphabetically<br>(A-Z)</button>
-            <button id="sort-button-alphabet-reverse">Sort Alphabetically<br>(Z-A)</button>
-            <button id="sort-button-author">Sort by Author<br>(A-Z)</button>
-            <button id="sort-button-author-reverse">Sort by Author<br>(Z-A)</button>
-            <button id="sort-button-time">Sort by Time<br>(A-Z)</button>
-            <button id="sort-button-time-reverse">Sort by Time<br>(Z-A)</button>
-            <button id="sort-button-length">Sort by Length<br>(A-Z)</button>
-            <button id="sort-button-length-reverse">Sort by Length<br>(Z-A)</button>
+            <button id="sort-button-alphabet">Sort alphabetically<br>(A-Z)</button>
+            <button id="sort-button-alphabet-reverse">Sort alphabetically<br>(Z-A)</button>
+            <button id="sort-button-author">Sort by author<br>(A-Z)</button>
+            <button id="sort-button-author-reverse">Sort by author<br>(Z-A)</button>
+            <button id="sort-button-length">Sort by length<br>(A-Z)</button>
+            <button id="sort-button-length-reverse">Sort by length<br>(Z-A)</button>
+            <button id="sort-button-time">Sort by time<br>(↑-↓)</button>
+            <button id="sort-button-time-reverse">Sort by time<br>(↓-↑)</button>
         </div>
                <!--<div class="anchor anchor_1">
 
@@ -106,9 +106,9 @@
     <script id="message-template" type="text/html">
 
             
-            <div style="color: {{username}}; background-color: {{username}};"  class="message  {{username}}">
+            <div style="color: {{colour}}; background-color: {{colour}};"  class="message  {{colour}}">
                 <p class="meta">
-                    <span class="message__name">{{username}}</span>
+                    <span class="message__name">{{colour}}</span>
                     <span class="message__meta">{{createdAt}}</span>
                 </p>
                 <p class="message__inner">{{message}}</p>
@@ -120,7 +120,7 @@
     <script id="location-message-template" type="text/html">
             <div class="message">
                 <p>
-                    <span class="message__name">{{username}}</span>
+                    <span class="message__name">{{colour}}</span>
                     <span class="message__meta">{{createdAt}}</span>
                 </p>
                 <p><a href="{{url}}" target="_blank">My current location</a></p>

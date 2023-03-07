@@ -3,21 +3,21 @@ const users = []
 
 
 
-const addUser = ({ id, username, room }) => {
-    username = username.trim().toLowerCase()
+const addUser = ({ id, colour, room }) => {
+    colour = colour.trim().toLowerCase()
     room = room.trim().toLowerCase()
 
-    if (!username || !room) {
+    if (!colour || !room) {
         return {
-            error: 'Username and room are required!'
+            error: 'colour and room are required!'
         }
     }    const existingUser = users.find((user) => {
-        return user.room === room && user.username === username
+        return user.room === room && user.colour === colour
     })
 
     if (existingUser) {
         return {
-            error: 'Username is in use!'
+            error: 'colour is in use!'
         }
     }
 
@@ -32,7 +32,7 @@ userPosition = positions[userPositionIndex];
 
 console.log(userColor);
 
-    const user = { id, username, room, userColor, userPosition }
+    const user = { id, colour, room, userColor, userPosition }
     users.push(user)
     return { user }
 }
