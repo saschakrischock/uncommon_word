@@ -402,6 +402,9 @@ window.addEventListener("load", function() {
     const storedMessagesContent = localStorage.getItem("messagesContent" + localroom);
     if (storedMessagesContent) {
       document.querySelector('#messages').innerHTML = storedMessagesContent;
+      for (const indicator of document.querySelectorAll('.anchor_indicator')) {
+       indicator.style.backgroundColor = '#fff';
+      }
     }
   });
 
