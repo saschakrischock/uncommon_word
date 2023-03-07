@@ -327,9 +327,9 @@ sortButtonlength.addEventListener("click", () => {
 
 
     socket.on('color', (data) => {
-        document.querySelector('.color-indicator').style.backgroundColor = data.getcolor;
-        document.querySelector('.' + data.getposition + '_indicator').style.backgroundColor = data.getcolor;
-            document.querySelector('#cursors').style.backgroundColor = data.getcolor;
+        document.querySelector('.color-indicator').style.backgroundColor = data.getuser;
+        document.querySelector('.' + data.getposition + '_indicator').style.backgroundColor = data.getuser;
+            document.querySelector('#cursors').style.backgroundColor = data.getuser;
       });
 
 socket.on('cursor', (data) => {

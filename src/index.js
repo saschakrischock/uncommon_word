@@ -54,6 +54,8 @@ io.on('connection', (socket) => {
             return callback(error)
         }
 
+
+        
         
        // const id = getUser(socket.id)
         console.log('color ' + user.userColor);
@@ -67,6 +69,8 @@ io.on('connection', (socket) => {
             io.to(user.room).emit('cursor', { id: socket.id, x: data.x, y: data.y });
           });
     
+
+
 
 
         socket.emit('color', {getcolor: user.userColor, getuser: user.username, getposition: user.userPosition});

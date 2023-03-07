@@ -49,13 +49,16 @@ input {
     display: none;
 }
 
+#body {
+    cursor: none;
+}
+
 body {
     line-height: 1.4;
     color: #333333;
     font-size: 2rem;
     background-color: #ffcbaf;
     font-family: 'UncommonS';
-    cursor: none;
 }
 
 h1 {
@@ -97,9 +100,16 @@ button:disabled {
 #body.compose-body .message {
     border-radius: 3rem;
     font-size: 1.5rem !important;
-    background-color: red !important;
+    color: #fff !important;
     width: fit-content;
     margin-bottom: 1rem;
+}
+
+#body.compose-body .message .meta {
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    pointer-events: none;
 }
 
 .compose-body #messages {
@@ -340,6 +350,50 @@ button:disabled {
 }
 
 
+input[type="color"] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    height: 5rem;
+    padding: 0;
+    width: 5rem !IMPORTANT;
+    border-radius: 100% !IMPORTANT;
+    width: 15em;
+    margin-bottom: 3rem !important;
+}
+
+.color_text {
+    text-align: center;
+}
+  
+
+  
+  ::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  
+  ::-webkit-color-swatch{
+    border: 0;
+    border-radius: 0;
+  }
+  
+  ::-moz-color-swatch,
+  ::-moz-focus-inner{
+    border: 0;
+  }
+  
+  ::-moz-focus-inner{
+    padding: 0;
+  }
+
+
 
 .anchor_indicator {
     content: '';
@@ -387,6 +441,7 @@ button:disabled {
     background: lightgray;
     width: 100vw;
     height: 100vh;   
+    cursor: inherit !important;
     display: flex;
     justify-content: center;
     align-items: center;
