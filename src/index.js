@@ -78,6 +78,15 @@ io.on('connection', (socket) => {
   });
 
 
+  socket.on('uppercase', () => {
+    io.emit('clickUppercase');
+  });
+
+
+  socket.on('font-size-change', (fontSize) => {
+    console.log(fontSize);
+    socket.broadcast.emit('font-size-change', fontSize);
+  });
 
    
 

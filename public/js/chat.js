@@ -348,6 +348,10 @@ alert("left");
 
       // uppercase toggle button
       document.getElementById('case').addEventListener('click', () => {
+        socket.emit('uppercase');
+      });
+
+      socket.on('clickUppercase', () => {
         document.body.classList.toggle('uppercase');
         document.querySelector('#case').classList.toggle('active');
           });
@@ -357,13 +361,32 @@ alert("left");
 
           const slider = document.querySelector('.slider');
           const text = document.querySelector('#messages');
-          
+
+
+
+    
           slider.addEventListener('input', () => {
-            const fontSize = `${slider.value}rem`;
-            text.style.fontSize = fontSize;
+            const fontSize = slider.value;
+            text.style.fontSize = fontSize + 'rem';
             text.classList.remove('size-1rem','size-2rem', 'size-3rem', 'size-4rem', 'size-5rem', 'size-6rem', 'size-7rem', 'size-8rem', 'size-9rem', 'size-10rem', )
-            text.classList.add('size-' + fontSize );
+            text.classList.add('size-' + fontSize  + 'rem' );
+            socket.emit('font-size-change', fontSize);
           });
+          
+          socket.on('font-size-change', (fontSize) => {
+            text.style.fontSize = fontSize + 'rem';
+            slider.value = fontSize;
+
+            text.classList.remove('size-1rem','size-2rem', 'size-3rem', 'size-4rem', 'size-5rem', 'size-6rem', 'size-7rem', 'size-8rem', 'size-9rem', 'size-10rem', )
+            text.classList.add('size-' + fontSize  + 'rem' );
+          });
+
+  
+
+          slider.addEventListener('input', () => {
+            socket.emit('range');
+          });
+    
 
 
 
