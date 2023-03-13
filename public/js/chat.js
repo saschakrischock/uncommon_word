@@ -361,6 +361,7 @@ alert("left");
 
           const slider = document.querySelector('.slider');
           const text = document.querySelector('#messages');
+          const text_compose = document.querySelector('#messages_compose');
 
 
 
@@ -368,17 +369,24 @@ alert("left");
           slider.addEventListener('input', () => {
             const fontSize = slider.value;
             text.style.fontSize = fontSize + 'rem';
+            text_compose.style.fontSize = fontSize + 'rem';
             text.classList.remove('size-1rem','size-2rem', 'size-3rem', 'size-4rem', 'size-5rem', 'size-6rem', 'size-7rem', 'size-8rem', 'size-9rem', 'size-10rem', )
+            text_compose.classList.remove('size-1rem','size-2rem', 'size-3rem', 'size-4rem', 'size-5rem', 'size-6rem', 'size-7rem', 'size-8rem', 'size-9rem', 'size-10rem', )
             text.classList.add('size-' + fontSize  + 'rem' );
+            text_compose.classList.add('size-' + fontSize  + 'rem' );
             socket.emit('font-size-change', fontSize);
           });
           
           socket.on('font-size-change', (fontSize) => {
             text.style.fontSize = fontSize + 'rem';
+            text_compose.style.fontSize = fontSize + 'rem';
             slider.value = fontSize;
 
             text.classList.remove('size-1rem','size-2rem', 'size-3rem', 'size-4rem', 'size-5rem', 'size-6rem', 'size-7rem', 'size-8rem', 'size-9rem', 'size-10rem', )
             text.classList.add('size-' + fontSize  + 'rem' );
+
+            text_compose.classList.remove('size-1rem','size-2rem', 'size-3rem', 'size-4rem', 'size-5rem', 'size-6rem', 'size-7rem', 'size-8rem', 'size-9rem', 'size-10rem', )
+            text_compose.classList.add('size-' + fontSize  + 'rem' );
           });
 
   
@@ -433,28 +441,28 @@ socket.on('message', (message) => {
 
     if (message.position == 'anchor_1') {
      //   document.querySelector('.anchor_1 .message:last-child');
-        document.querySelector('.anchor_1').insertAdjacentHTML('beforeend', html)
-        document.querySelector('#messages_compose').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages .anchor_1').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages_compose .anchor_1').insertAdjacentHTML('beforeend', html)
     }
     else if (message.position == 'anchor_2') {
       //  document.querySelector('.anchor_2').style.color= message.color;
-        document.querySelector('.anchor_2').insertAdjacentHTML('beforeend', html)
-        document.querySelector('#messages_compose').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages .anchor_2').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages_compose .anchor_2').insertAdjacentHTML('beforeend', html)
     }
     else if (message.position == 'anchor_3') {
      //   document.querySelector('.anchor_3').style.color= message.color;
-        document.querySelector('.anchor_3').insertAdjacentHTML('beforeend', html)
-        document.querySelector('#messages_compose').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages .anchor_3').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages_compose .anchor_3').insertAdjacentHTML('beforeend', html)
     }
     else if (message.position == 'anchor_4') {
       //  document.querySelector('.anchor_4').style.color= message.color;
-        document.querySelector('.anchor_4').insertAdjacentHTML('beforeend', html)
-        document.querySelector('#messages_compose').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages .anchor_4').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages_compose .anchor_4').insertAdjacentHTML('beforeend', html)
     }
     else {
      //   document.querySelector('.anchor_5').style.color= message.color;
-        document.querySelector('.anchor_5').insertAdjacentHTML('beforeend', html)
-        document.querySelector('#messages_compose').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages .anchor_5').insertAdjacentHTML('beforeend', html)
+        document.querySelector('#messages_compose .anchor_5').insertAdjacentHTML('beforeend', html)
     }
     autoscroll()
 })
@@ -466,6 +474,7 @@ window.addEventListener("load", function() {
     const storedMessagesContent = localStorage.getItem("messagesContent" + localroom);
     if (storedMessagesContent) {
       document.querySelector('#messages').innerHTML = storedMessagesContent;
+      document.querySelector('#messages_compose').innerHTML = storedMessagesContent;
       for (const indicator of document.querySelectorAll('.anchor_indicator')) {
        indicator.style.backgroundColor = '#fff';
       }

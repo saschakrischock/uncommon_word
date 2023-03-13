@@ -97,12 +97,26 @@ button:disabled {
 /* Join Page Styles */
 
 
+.read .sort-group {
+    display: none !important;
+}
+
+
+
 #body.compose-body .message {
-    border-radius: 3rem;
-    font-size: 1.5rem !important;
-    color: #fff !important;
+   /* border-radius: 3rem;*/
+    /*font-size: 1.5rem !important;*/
+   /* color: #fff !important;*/
+   background-color: transparent !important;
     width: fit-content;
+    float: left;
+    padding: 0 0.95rem 0 0;
     margin-bottom: 1rem;
+}
+
+
+#body.compose-body #message-form {
+    display: none;
 }
 
 #body.compose-body .message .meta {
@@ -119,7 +133,11 @@ button:disabled {
 
 .compose-body .chat__messages {
     padding-bottom: 6rem;
-    width: calc(100vw - 0rem);
+    width: calc(97vw - 0rem);
+    margin-top: 13rem;
+    margin-left: 1rem;
+    background-color: #fff;
+    border-radius: 3rem;
 }
 
 
@@ -233,10 +251,11 @@ button:disabled {
 .sort-group {
     z-index: 100;
     width: calc(100vw - 1rem);
-    position: sticky;
-    top: 5rem;
+    position: fixed;
+    top: 6rem;
     display: flex;
-    margin-top: 5rem;
+    left: 1rem;
+    margin-top: 0;
     margin-bottom: 1rem;
 }
 
@@ -254,7 +273,7 @@ button {
   }
 
 
-.uppercase #messages {
+.uppercase #messages, .uppercase #messages_compose {
     text-transform: uppercase;
 }
 
@@ -602,6 +621,8 @@ input[type="range"]::-ms-fill-upper {
 #colorPicker {
     display: none;
 }
+
+
 
 .compose {
     display: flex;
