@@ -1,8 +1,6 @@
-# Chatapp
-Just a simple app chat to learn how socket.io works
-
-# Heroku app
-Chat is hosted in Heroku and available in https://pezzetti-chat-app.herokuapp.com/
+# Uncommon Words
+The third uncommon collective tool that took its start from here
+https://github.com/pezzetti/chatapp
 
 ## :rocket: Technologies
 
@@ -21,4 +19,4 @@ Web site will be available in http://localhost:3000
 
 Open multiple browsers, add an colour and room name 
 
-Start chatting !
+Start uncommon Wording
