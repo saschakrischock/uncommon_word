@@ -7,6 +7,13 @@ const usersDiv = document.getElementById('users');
 
 // toggle
 
+const questionElement = document.querySelector('.btn-question');
+const overlayElement = document.querySelector('.info__overlay');
+
+questionElement.addEventListener('click', () => {
+  overlayElement.classList.toggle('active');
+});
+
 
 
 
