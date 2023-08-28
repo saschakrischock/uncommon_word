@@ -503,12 +503,15 @@ input[type="color"] {
     height: 100vh;   
     cursor: inherit !important;
     display: flex;
+    text-align: center;
     justify-content: center;
     align-items: center;
 }
 
 .centered-form p {
     width: 100%;
+    text-align: center;
+    line-height: 1.4;
     padding: 0 1rem;
     max-width: 50rem;
 }
