@@ -499,11 +499,24 @@ input[type="color"] {
 .centered-form {
     background: lightgray;
     width: 100vw;
+    flex-direction: column;
     height: 100vh;   
     cursor: inherit !important;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.centered-form p {
+    width: 100%;
+    padding: 0 1rem;
+    max-width: 50rem;
+}
+
+.centered-form a {
+    color: #000 !important;
+    margin-top: 1rem;
+    display: block;
 }
 
 .centered-form__box {
