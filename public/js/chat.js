@@ -12,9 +12,62 @@ const overlayElement = document.querySelector('.info__overlay');
 
 questionElement.addEventListener('click', () => {
   overlayElement.classList.toggle('active');
+  questionElement.classList.toggle('active');
 });
 
 
+const urlParam = new URLSearchParams(window.location.search);
+const roomName = urlParam.get('room'); // Get the value of the 'room' parameter
+
+// Find the div element with the class "roomname"
+const roomNameDiv = document.querySelector('.roomname');
+
+// Set the extracted room name as the content of the div
+if (roomName) {
+    roomNameDiv.textContent = roomName;
+} else {
+    roomNameDiv.textContent = 'No room name specified';
+}
+
+
+
+
+// toggle
+
+document.addEventListener('DOMContentLoaded', function () {
+  var copyButton = document.querySelector('.copy-url');
+
+  copyButton.addEventListener('click', function () {
+      // Get the current URL
+      var currentUrl = window.location.href;
+
+      // Create a temporary input element
+      var tempInput = document.createElement('input');
+      tempInput.value = currentUrl;
+      document.body.appendChild(tempInput);
+
+      // Select the text in the input element
+      tempInput.select();
+      tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+      // Copy the text to the clipboard
+      document.execCommand('copy');
+
+      // Remove the temporary input element
+      document.body.removeChild(tempInput);
+
+      // Show an alert
+      alert('URL has been copied to your clipboard!');
+  });
+});
+
+const invite = document.querySelector('.btn-invite');
+const overlayinvite = document.querySelector('.invite-overlay');
+
+invite.addEventListener('click', () => {
+  invite.classList.toggle('active');
+  overlayinvite.classList.toggle('active');
+});
 
 
 colors = ['#8800ff', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff', '#800080', '#008000'];

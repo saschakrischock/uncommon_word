@@ -158,6 +158,11 @@ button:disabled {
     padding: 0.8rem 1rem 0.6rem;
 }
 
+.btn-invite.active {
+    background-color: red;
+    color: #fff;
+}
+
 .btn-question {
     font-size: 1.4rem;
     background-color: #fff;
@@ -173,6 +178,16 @@ button:disabled {
     right: 0.75rem;
     cursor: pointer;
     padding: 0;
+}
+
+.btn-question:hover, .btn-sessions:hover {
+    background-color: red;
+    color: #fff;
+}
+
+.btn-question.active {
+    background-color: red;
+    color: #fff;
 }
 
 .btn-sessions {
@@ -197,7 +212,7 @@ button:disabled {
     position: absolute;
     top: 1rem;
     width: fit-content;
-    left: 20.5rem;
+    right: 4.5rem;
     cursor: pointer;
     line-height: 1.2rem;
     padding: 0.8rem 1rem 0.6rem;
@@ -258,7 +273,7 @@ button:disabled {
 }
 
 .sort-group {
-    z-index: 100;
+    z-index: 10;
     width: calc(100vw - 1rem);
     position: fixed;
     top: 4.5rem;
@@ -290,12 +305,12 @@ button {
     padding: 1rem;
     position: absolute;
     top: 0;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 #message-form input {
     width: 10rem;
-    height: 2.5rem;
+    height: 2.55rem;
     font-size: 1.4rem;
 }
 
@@ -522,6 +537,38 @@ input[type="color"] {
     overflow-y: scroll;
 }
 
+.invite-overlay {
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    max-height: 300px;
+    position: fixed;
+    max-width: 500px;
+    min-width: 350px;
+    z-index: 101;
+    display: none;
+    flex-flow: column;
+    font-size: 1.4rem;
+    border-radius: 3rem;
+    line-height: 1.2;
+    padding: 2rem;
+    overflow-y: scroll;
+}
+
+.invite-overlay.active {
+    display: flex !important;
+}
+
+.copy-url {
+    color: #fff;
+    border-radius: 3rem;
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0.2rem 0.2rem;
+    background-color: red;
+}
+
 /* Chat styles */
 
 .chat__main {
@@ -538,19 +585,21 @@ input[type="color"] {
     overflow-y: scroll;
 }
 
+
+
 /* Message Styles */
 
 .slider-container {
     position: fixed;
-    left: 31.5rem;
-    top: 1.2rem;
+    right: 15rem;
+    top: 1.4rem;
 }
 
 /*Chrome*/
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     input[type='range'] {
     /*  overflow: hidden;*/
-      width: 13rem;
+      width: 11rem;
       padding: 0.1rem;
       -webkit-appearance: none;
       background-color: red;
@@ -593,7 +642,7 @@ input[type="range"]::-ms-fill-upper {
 .message {
     background-color: red;
     border-radius: 3rem;
-    padding: 1.5rem;
+    padding: 1.4rem;
     margin-bottom: 0;   
 }
 
@@ -608,7 +657,7 @@ input[type="range"]::-ms-fill-upper {
 
 .message__name {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #fff;
     margin-right: 8px;
 }
@@ -628,7 +677,7 @@ input[type="range"]::-ms-fill-upper {
 
 .message__meta {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 .message a {
@@ -654,6 +703,13 @@ input[type="range"]::-ms-fill-upper {
     padding: 24px;
 }
 
+.roomname {
+    position: fixed;
+    left: 50%;
+    top: 1.5rem;
+    transform: translateX(-50%);
+}
+
 .compose form {
     display: flex;
     flex-grow: 1;
@@ -671,7 +727,7 @@ input[type="range"]::-ms-fill-upper {
 
 .room-title {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     padding: 24px;
     font-weight: 400;
     margin-top: 6rem; 
@@ -685,7 +741,7 @@ input[type="range"]::-ms-fill-upper {
 }
 
 .users {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     list-style-type: none;
     font-weight: 300;
     font-weight: 400;
