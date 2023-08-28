@@ -511,12 +511,13 @@ input[type="color"] {
 .centered-form p {
     width: 100%;
     text-align: center;
-    line-height: 1.4;
+    line-height: 1.4rem;
     padding: 0 1rem;
     max-width: 50rem;
 }
 
 .centered-form a {
+    text-align: center;
     color: #000 !important;
     margin-top: 1rem;
     display: block;
